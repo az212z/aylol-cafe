@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="أيلول AYLOL — قهوة مختصة في تبوك. أجواء هادئة، إضاءة دافئة، وقهوة محضّرة بعناية. مساحتك للدراسة والاسترخاء.">
+<title>AYLOL · أيلول — قهوة مختصة في تبوك</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+<style>
+:root{
+  --ink:#15211D;
+  --ink2:#1e2d28;
+  --cream:#F2ECE0;
+  --paper:#FAF6EC;
+  --gold:#C99A3F;
+  --gold-dk:#A87C28;
+  --maple:#B5552B;
+  --wood:#6E4E30;
+  --muted:#8d877a;
+  --line:rgba(21,33,29,0.12);
+  --f-ar:'Almarai',sans-serif;
+  --f-ar-d:'Reem Kufi',sans-serif;
+  --f-en:'Playfair Display',serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-ar);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 28px}
+::selection{background:var(--gold);color:var(--ink)}
+
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+.eyebrow{font-family:var(--f-en);font-style:italic;font-size:1.18rem;letter-spacing:.03em;color:var(--gold-dk);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--gold-dk);display:inline-block}
+.h-sec{font-family:var(--f-ar-d);font-weight:700;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.3;letter-spacing:-.01em}
+
+/* logo */
+.logo{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-en);font-weight:600;font-size:1.5rem;letter-spacing:.22em;color:#fff;line-height:1;transition:color .45s var(--ease)}
+.logo i{color:var(--gold);font-size:1.25rem;transition:transform .5s var(--ease)}
+.logo:hover i{transform:rotate(-12deg)}
+
+/* ============ NAV ============ */
+#nav{position:fixed;inset:0 0 auto 0;z-index:1000;padding:22px 0;transition:all .45s var(--ease)}
+#nav.scrolled{background:rgba(21,33,29,.92);backdrop-filter:blur(14px);padding:13px 0;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+#nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-family:var(--f-ar);font-size:.95rem;font-weight:400;color:rgba(255,255,255,.82);position:relative;transition:color .35s}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;right:0;width:0;height:1.5px;background:var(--gold);transition:width .35s var(--ease)}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:#fff}
+.nav-cta{font-family:var(--f-ar);font-weight:700;font-size:.9rem;padding:10px 24px;border-radius:100px;background:var(--gold);color:var(--ink);transition:all .35s var(--ease)}
+.nav-cta:hover{background:#fff;transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;padding:6px}
+.burger span{width:26px;height:2px;background:#fff;border-radius:2px;transition:.35s}
+
+#mnav{position:fixed;inset:0;z-index:2000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+#mnav.open{opacity:1;pointer-events:all}
+#mnav a{font-family:var(--f-ar-d);font-size:1.85rem;color:var(--cream);font-weight:500}
+#mnav a:hover{color:var(--gold)}
+#mnav .logo{position:absolute;top:24px;right:28px}
+.mclose{position:absolute;top:30px;left:28px;font-size:1.7rem;color:var(--cream)}
+
+/* ============ HERO ============ */
+#hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.hero-bg{position:absolute;inset:0;background:url('img/storefront.jpg') center 28%/cover no-repeat;transform:scale(1.08);animation:hz 13s var(--ease) forwards}
+@keyframes hz{to{transform:scale(1)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,14,.55)0%,rgba(10,16,14,.32)42%,rgba(10,16,14,.86)100%)}
+.hero-inner{position:relative;z-index:3;width:100%;padding-bottom:8vh;text-align:center}
+.hero-leaf{font-size:2.4rem;color:var(--gold);margin-bottom:10px;display:inline-block;animation:fall 1.2s var(--ease) both}
+@keyframes fall{from{opacity:0;transform:translateY(-22px) rotate(-30deg)}to{opacity:1;transform:none}}
+.hero-name{font-family:var(--f-en);font-weight:600;font-size:clamp(3.4rem,11vw,8rem);color:#fff;letter-spacing:.18em;line-height:1;text-shadow:0 6px 40px rgba(0,0,0,.45);padding-right:.18em}
+.hero-ar-name{font-family:var(--f-ar-d);font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold);margin-top:6px;font-weight:500}
+.hero-tag{font-family:var(--f-en);font-style:italic;font-size:clamp(1rem,2.2vw,1.45rem);color:rgba(255,255,255,.9);letter-spacing:.06em;margin-top:14px}
+.hero-desc{font-family:var(--f-ar);font-weight:300;font-size:clamp(1rem,1.8vw,1.18rem);color:rgba(255,255,255,.8);max-width:560px;margin:18px auto 0;line-height:2}
+.hero-actions{display:flex;gap:15px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-ar);font-weight:700;font-size:1rem;padding:15px 34px;border-radius:100px;transition:all .4s var(--ease)}
+.btn-main{background:var(--gold);color:var(--ink)}
+.btn-main:hover{background:#fff;transform:translateY(-2px);box-shadow:0 14px 30px rgba(201,154,63,.35)}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero-scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.6);font-family:var(--f-en);font-style:italic;font-size:.92rem;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bob 2.2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ============ MARQUEE ============ */
+.marq{background:var(--ink);color:var(--cream);padding:15px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
+.marq-t{display:flex;white-space:nowrap;animation:marq 34s linear infinite;width:max-content}
+.marq-i{display:inline-flex;align-items:center;gap:18px;padding:0 26px;font-family:var(--f-en);font-style:italic;font-size:1.12rem;letter-spacing:.04em;color:rgba(242,236,224,.92)}
+.marq-i .lf{color:var(--gold);font-style:normal;font-size:1rem}
+@keyframes marq{to{transform:translateX(50%)}}
+
+/* ============ INTRO ============ */
+#intro{padding:120px 0;background:var(--cream)}
+.intro-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.intro-imgs{position:relative}
+.intro-imgs .im1{border-radius:10px;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 30px 70px rgba(21,33,29,.2)}
+.intro-imgs .im2{position:absolute;bottom:-44px;right:-40px;width:48%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;border:7px solid var(--cream);box-shadow:0 20px 44px rgba(21,33,29,.24)}
+.intro-tag{position:absolute;top:24px;left:-16px;background:var(--maple);color:#fff;font-family:var(--f-en);font-style:italic;font-size:1.15rem;padding:8px 22px;border-radius:100px;box-shadow:0 12px 26px rgba(0,0,0,.2)}
+.intro-body p{font-size:1.08rem;color:#403b32;line-height:2.05;margin-bottom:20px}
+.intro-body .lead{font-family:var(--f-ar-d);font-size:1.32rem;color:var(--ink);font-weight:600}
+.intro-feats{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+.feat{display:flex;align-items:center;gap:12px}
+.feat i{font-size:1.5rem;color:var(--gold-dk)}
+.feat span{font-weight:700;font-size:.97rem}
+
+/* ============ STATS ============ */
+#stats{background:var(--ink);padding:68px 0;color:var(--cream)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;padding:14px 20px;position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;top:18%;left:0;height:64%;width:1px;background:rgba(255,255,255,.13)}
+.stat .n{font-family:var(--f-en);font-size:clamp(2.5rem,4.4vw,3.6rem);font-weight:600;color:var(--gold);line-height:1}
+.stat .n .u{font-size:1.3rem}
+.stat .l{font-size:.93rem;color:rgba(242,236,224,.6);margin-top:6px;font-weight:300}
+
+/* ============ MENU ============ */
+#menu{padding:120px 0;background:var(--paper)}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 50px}
+.sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:46px}
+.tab{font-family:var(--f-ar);font-weight:700;font-size:.95rem;padding:10px 26px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink);background:transparent;transition:all .35s var(--ease)}
+.tab:hover{border-color:var(--gold)}
+.tab.active{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.panel{display:none;max-width:920px;margin:0 auto}
+.panel.active{display:block;animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+.mrow{display:flex;align-items:baseline;gap:12px;padding:15px 0;border-bottom:1px dashed var(--line)}
+.mrow .nm{font-weight:700;font-size:1.02rem;white-space:nowrap}
+.mrow .nm small{font-weight:400;color:var(--muted);font-size:.82rem;margin-right:6px}
+.mrow .dot{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px)}
+.mrow .pr{font-family:var(--f-en);font-weight:600;font-size:1.1rem;color:var(--gold-dk);white-space:nowrap}
+.mrow .pr small{font-size:.72rem;color:var(--muted);margin-right:2px}
+.menu-note{text-align:center;margin-top:42px;color:var(--muted);font-size:.95rem}
+.menu-note b{color:var(--gold-dk)}
+
+/* ============ GALLERY ============ */
+#atmos{padding:120px 0;background:var(--cream)}
+.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:14px;margin-top:50px}
+.g{overflow:hidden;border-radius:10px;cursor:pointer;position:relative}
+.g img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.g::after{content:'';position:absolute;inset:0;background:rgba(21,33,29,0);transition:background .4s}
+.g:hover::after{background:rgba(21,33,29,.2)}
+.g:hover img{transform:scale(1.06)}
+.g .zoom{position:absolute;bottom:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:var(--ink);opacity:0;transition:opacity .4s;z-index:2}
+.g:hover .zoom{opacity:1}
+.g1{grid-column:span 5;grid-row:span 2}
+.g2{grid-column:span 4;grid-row:span 2}
+.g3{grid-column:span 3;grid-row:span 2}
+.g4{grid-column:span 4;grid-row:span 2}
+.g5{grid-column:span 4;grid-row:span 2}
+.g6{grid-column:span 4;grid-row:span 2}
+
+/* ============ STORY ============ */
+#story{position:relative;padding:150px 0;background:url('img/terrace.jpg') center/cover fixed no-repeat;color:#fff;text-align:center}
+#story::before{content:'';position:absolute;inset:0;background:rgba(12,18,15,.74)}
+.story-in{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.story-in .lf{font-size:2rem;color:var(--gold);margin-bottom:18px;display:block}
+.story-in .q{font-family:var(--f-en);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.7rem);line-height:1.55;color:#fff}
+.story-in .ar{font-family:var(--f-ar);font-weight:300;font-size:1.1rem;color:rgba(255,255,255,.82);margin-top:22px;line-height:2}
+
+/* ============ REVIEWS ============ */
+#reviews{padding:120px 0;background:var(--paper)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px}
+.rev{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:34px 30px;position:relative}
+.rev .stars{color:var(--gold);font-size:1rem;display:flex;gap:3px;margin-bottom:16px}
+.rev .tx{font-size:1.02rem;line-height:1.95;color:#403b32;margin-bottom:22px}
+.rev .who{display:flex;align-items:center;gap:13px}
+.rev .av{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--f-ar-d);font-weight:700;font-size:1.15rem}
+.rev .nm{font-weight:700;font-size:.97rem}
+.rev .src{font-size:.82rem;color:var(--muted)}
+.rev .qmark{position:absolute;top:18px;left:26px;font-family:var(--f-en);font-size:4rem;color:var(--gold);opacity:.18;line-height:1}
+.rev-foot{text-align:center;margin-top:40px;color:var(--muted)}
+.rev-foot b{color:var(--ink)}
+
+/* ============ LOCATION ============ */
+#loc{padding:120px 0;background:var(--cream)}
+.loc-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:stretch}
+.loc-info .row{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.loc-info .row:first-of-type{padding-top:0}
+.loc-ic{width:46px;height:46px;border-radius:12px;background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.loc-info .row strong{display:block;font-family:var(--f-ar-d);font-size:1.05rem;margin-bottom:3px}
+.loc-info .row p{color:var(--muted);font-size:.95rem;line-height:1.7}
+.loc-info .row a{color:var(--gold-dk);font-weight:700}
+.loc-actions{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
+.btn-ink{background:var(--ink);color:var(--cream)}
+.btn-ink:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+.btn-line{border:1.5px solid var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--cream)}
+.map-wrap{border-radius:14px;overflow:hidden;box-shadow:0 24px 54px rgba(21,33,29,.18);min-height:430px}
+.map-wrap iframe{width:100%;height:100%;min-height:430px;border:0;display:block;filter:grayscale(.2) sepia(.1)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--cream);padding:80px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:50px;margin-bottom:54px}
+.foot-brand .logo{font-size:1.9rem;margin-bottom:14px}
+.foot-brand p{color:rgba(242,236,224,.55);font-size:.95rem;line-height:1.9;max-width:300px}
+.foot-soc{display:flex;gap:12px;margin-top:22px}
+.foot-soc a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(242,236,224,.75);font-size:1.15rem;transition:all .35s}
+.foot-soc a:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px)}
+.foot-col h4{font-family:var(--f-ar-d);font-size:1.1rem;margin-bottom:20px}
+.foot-col li{margin-bottom:11px}
+.foot-col a{color:rgba(242,236,224,.55);font-size:.94rem;transition:color .3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bottom p{font-size:.85rem;color:rgba(242,236,224,.4)}
+.foot-bottom .en{font-family:var(--f-en);font-style:italic;color:var(--gold)}
+
+/* ============ FLOATS + LIGHTBOX ============ */
+.floats{position:fixed;bottom:26px;left:26px;z-index:900;display:flex;flex-direction:column;gap:12px}
+.fbtn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .35s var(--ease)}
+.fbtn:hover{transform:translateY(-3px) scale(1.05)}
+.f-wa{background:#25D366;color:#fff}
+.f-top{background:var(--ink);color:var(--gold);opacity:0;pointer-events:none;transition:opacity .35s,transform .35s}
+.f-top.show{opacity:1;pointer-events:all}
+#lb{position:fixed;inset:0;z-index:5000;background:rgba(10,15,12,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+#lb.open{opacity:1;pointer-events:all}
+#lb img{max-width:90vw;max-height:88vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lb .x{position:absolute;top:22px;left:22px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center}
+#lb .ar-btn{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:background .3s}
+#lb .ar-btn:hover{background:rgba(255,255,255,.25)}
+#lb .prev{right:22px}
+#lb .next{left:22px}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .intro-grid{grid-template-columns:1fr;gap:90px}
+  .intro-imgs{max-width:480px;margin:0 auto}
+  .loc-grid{grid-template-columns:1fr;gap:40px}
+  #story{background-attachment:scroll}
+}
+@media(max-width:820px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  #intro,#menu,#atmos,#reviews,#loc{padding:80px 0}
+  #story{padding:110px 0}
+  #stats{padding:54px 0}
+  .sec-head{margin-bottom:40px}
+  .mgrid{grid-template-columns:1fr;gap:0}
+  .rev-grid{grid-template-columns:1fr;max-width:480px;margin:54px auto 0}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:34px 0}
+  .stat:nth-child(2)::after{display:none}
+  .foot-grid{grid-template-columns:1fr;gap:38px}
+  .gal{grid-auto-rows:150px}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 6;grid-row:span 2}
+}
+@media(max-width:520px){
+  .wrap{padding:0 18px}
+  #intro,#menu,#atmos,#reviews,#loc{padding:64px 0}
+  .intro-grid{gap:72px}
+  .intro-imgs{max-width:340px}
+  .intro-imgs .im2{right:0;bottom:-30px;border-width:5px}
+  .intro-body p{font-size:1rem}
+  .hero-desc{font-size:1.02rem}
+  .hero-actions{flex-direction:column}
+  .btn{width:100%;justify-content:center}
+  .stats-grid{gap:30px 0}
+  .story-in .q{font-size:1.5rem}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .g3,.g6{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="#hero" class="logo"><i class="ph-fill ph-leaf"></i>AYLOL</a>
+    <ul class="nav-links">
+      <li><a href="#intro">عن أيلول</a></li>
+      <li><a href="#menu">القائمة</a></li>
+      <li><a href="#atmos">الأجواء</a></li>
+      <li><a href="#reviews">آراؤكم</a></li>
+      <li><a href="#loc">الموقع</a></li>
+    </ul>
+    <a href="https://wa.me/966553414149" target="_blank" rel="noopener" class="nav-cta">تواصل معنا</a>
+    <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mnav">
+  <a href="#hero" class="logo"><i class="ph-fill ph-leaf"></i>AYLOL</a>
+  <button class="mclose" id="mclose" aria-label="إغلاق">✕</button>
+  <a href="#intro" class="ml">عن أيلول</a>
+  <a href="#menu" class="ml">القائمة</a>
+  <a href="#atmos" class="ml">الأجواء</a>
+  <a href="#reviews" class="ml">آراؤكم</a>
+  <a href="#loc" class="ml">الموقع</a>
+  <a href="https://wa.me/966553414149" target="_blank" rel="noopener">تواصل معنا</a>
+</div>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner wrap">
+    <i class="ph-fill ph-leaf hero-leaf"></i>
+    <h1 class="hero-name">AYLOL</h1>
+    <div class="hero-ar-name">أيلول · قهوة مختصة</div>
+    <p class="hero-tag">Specialty Coffee — Tabuk</p>
+    <p class="hero-desc">حيث يلتقي هدوء أيلول برائحة القهوة. مساحة دافئة في تبوك للدراسة، العمل، أو لحظة استرخاء مع فنجان محضّر بعناية.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-main"><i class="ph-bold ph-coffee"></i> تصفّح القائمة</a>
+      <a href="#atmos" class="btn btn-ghost"><i class="ph-bold ph-images"></i> أجواء المكان</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>اكتشف المزيد</span><i class="ph ph-arrow-down"></i></div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-t">
+    <span class="marq-i">قهوة مختصة <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">Specialty Coffee <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">أجواء هادئة <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">كورتادو · فلات وايت · V60 <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">مساحتك للدراسة والاسترخاء <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">قهوة مختصة <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">Specialty Coffee <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">أجواء هادئة <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">كورتادو · فلات وايت · V60 <i class="ph-fill ph-leaf lf"></i></span>
+    <span class="marq-i">مساحتك للدراسة والاسترخاء <i class="ph-fill ph-leaf lf"></i></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-imgs rv">
+      <img src="img/interior-main.jpg" class="im1" alt="جلسات أيلول الهادئة">
+      <img src="img/cups.jpg" class="im2" alt="أكواب أيلول">
+      <span class="intro-tag">Since September</span>
+    </div>
+    <div class="intro-body rv">
+      <span class="eyebrow">عن أيلول · About</span>
+      <h2 class="h-sec">قهوة بروح<br>أيلول</h2>
+      <p style="margin-top:22px"><span class="lead">أيلول</span> اسمٌ يحمل دفء نهاية الصيف وبداية موسم جديد. اخترناه لأن القهوة عندنا تجربة هادئة، بعيدة عن الضجيج — إضاءة مريحة، جلسات أنيقة، وتفاصيل مدروسة.</p>
+      <p>مساحة يجدها زوّارنا مثالية للدراسة والعمل أو لقاء الأصدقاء، مع قهوة مختصة محضّرة بعناية وحلا طازج يكمّل التجربة.</p>
+      <div class="intro-feats">
+        <div class="feat"><i class="ph-bold ph-coffee-bean"></i><span>قهوة مختصة</span></div>
+        <div class="feat"><i class="ph-bold ph-book-open"></i><span>أجواء للدراسة</span></div>
+        <div class="feat"><i class="ph-bold ph-armchair"></i><span>جلسات مريحة</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap stats-grid">
+    <div class="stat rv"><div class="n">4.3<span class="u">★</span></div><div class="l">تقييم الزوّار على Google</div></div>
+    <div class="stat rv"><div class="n">456<span class="u">+</span></div><div class="l">مراجعة موثّقة</div></div>
+    <div class="stat rv"><div class="n">1:30<span class="u">am</span></div><div class="l">مفتوح حتى وقت متأخر</div></div>
+    <div class="stat rv"><div class="n">30<span class="u">+</span></div><div class="l">صنف في القائمة</div></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">القائمة · Menu</span>
+      <h2 class="h-sec">قائمتنا</h2>
+      <p>قهوة مختصة، مقطّرة بطرق متعددة، ومشروبات باردة وحلا. الأسعار بالريال السعودي.</p>
+    </div>
+
+    <div class="tabs rv">
+      <button class="tab active" data-tab="hot">ساخنة</button>
+      <button class="tab" data-tab="filter">مقطّرة</button>
+      <button class="tab" data-tab="cold">باردة</button>
+      <button class="tab" data-tab="sweet">حلويات</button>
+      <button class="tab" data-tab="pastry">معجنات</button>
+    </div>
+
+    <div class="panel active rv" id="p-hot">
+      <div class="mgrid">
+        <div class="mrow"><span class="nm">أيلول <small>مشروب المقهى</small></span><span class="dot"></span><span class="pr">18<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كورتادو</span><span class="dot"></span><span class="pr">15<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">فلات وايت</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كابتشينو</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">لاتيه</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">بيكولو</span><span class="dot"></span><span class="pr">14<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">ميكاتو</span><span class="dot"></span><span class="pr">12<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">أمريكانو</span><span class="dot"></span><span class="pr">13<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">إسبريسو <small>دبل</small></span><span class="dot"></span><span class="pr">11<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">إسبريسو <small>سنقل</small></span><span class="dot"></span><span class="pr">9<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">هوت موكا</span><span class="dot"></span><span class="pr">17<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">هوت سبانش</span><span class="dot"></span><span class="pr">20<small>﷼</small></span></div>
+      </div>
+    </div>
+
+    <div class="panel rv" id="p-filter">
+      <div class="mgrid">
+        <div class="mrow"><span class="nm">V60</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كيمكس <small>Chemex</small></span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كاليتا <small>Kalita</small></span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+      </div>
+      <p class="menu-note">طرق تقطير مختصة تُبرز نكهات البن الفاتح — اسأل الباريستا عن محصول اليوم.</p>
+    </div>
+
+    <div class="panel rv" id="p-cold">
+      <div class="mgrid">
+        <div class="mrow"><span class="nm">آيس أيلول</span><span class="dot"></span><span class="pr">19<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">سبانش لاتيه</span><span class="dot"></span><span class="pr">20<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">بيستاشيو لاتيه</span><span class="dot"></span><span class="pr">22<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">سبانش كراميل</span><span class="dot"></span><span class="pr">22<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">آيس شيكن كراميل</span><span class="dot"></span><span class="pr">22<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">آيس كراميل لاتيه</span><span class="dot"></span><span class="pr">19<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كولد برو</span><span class="dot"></span><span class="pr">22<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">آيس دريب</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">أفوقاتو</span><span class="dot"></span><span class="pr">18<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">تروبيكال</span><span class="dot"></span><span class="pr">19<small>﷼</small></span></div>
+      </div>
+    </div>
+
+    <div class="panel rv" id="p-sweet">
+      <div class="mgrid">
+        <div class="mrow"><span class="nm">مولتن كيك</span><span class="dot"></span><span class="pr">21<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">فادج شوكليت</span><span class="dot"></span><span class="pr">21<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">ليمون كيك</span><span class="dot"></span><span class="pr">21<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كيك الجزر</span><span class="dot"></span><span class="pr">21<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">باس كيك</span><span class="dot"></span><span class="pr">27<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">روتي توفي</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">جرانولا</span><span class="dot"></span><span class="pr">16<small>﷼</small></span></div>
+      </div>
+    </div>
+
+    <div class="panel rv" id="p-pastry">
+      <div class="mgrid">
+        <div class="mrow"><span class="nm">كروسان جبن</span><span class="dot"></span><span class="pr">—</span></div>
+        <div class="mrow"><span class="nm">كروسان حبوب بالجبن</span><span class="dot"></span><span class="pr">12<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">كروسان زعتر</span><span class="dot"></span><span class="pr">11<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">بيكد ماش بوتاتو</span><span class="dot"></span><span class="pr">11<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">مياه</span><span class="dot"></span><span class="pr">1<small>﷼</small></span></div>
+        <div class="mrow"><span class="nm">مياه معدنية</span><span class="dot"></span><span class="pr">10<small>﷼</small></span></div>
+      </div>
+    </div>
+
+    <p class="menu-note rv">الأسعار من قائمة المقهى وقد تتغيّر · للاستفسار عن الأصناف الموسمية <b>تواصلوا معنا</b></p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="atmos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">الأجواء · Atmosphere</span>
+      <h2 class="h-sec">لمحات من أيلول</h2>
+      <p>إضاءة دافئة، جلسات أنيقة، وتراس تحت أضواء خافتة. صور حقيقية من المكان.</p>
+    </div>
+    <div class="gal">
+      <div class="g g1" data-src="img/terrace.jpg" data-cap="تراس أيلول تحت الأضواء"><img src="img/terrace.jpg" alt="تراس أيلول"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g2" data-src="img/interior-velvet.jpg" data-cap="جلسات أيلول الأنيقة"><img src="img/interior-velvet.jpg" alt="جلسات أيلول"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g3" data-src="img/swan.jpg" data-cap="فن اللاتيه في أيلول"><img src="img/swan.jpg" alt="لاتيه آرت"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g4" data-src="img/coffee-duo.jpg" data-cap="كورتادو ودريب"><img src="img/coffee-duo.jpg" alt="قهوة أيلول"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g5" data-src="img/interior-main.jpg" data-cap="الجلسة الرئيسية"><img src="img/interior-main.jpg" alt="داخل أيلول"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g6" data-src="img/mocha.jpg" data-cap="موكا وكروسان"><img src="img/mocha.jpg" alt="موكا وكروسان"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-in wrap rv">
+    <i class="ph-fill ph-leaf lf"></i>
+    <p class="q">“In every cup, a little calm.”</p>
+    <p class="ar">في أيلول، نؤمن أن فنجان القهوة لحظة تستحق أن تُعاش بهدوء — بعيدًا عن الزحام، قريبًا من راحتك.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">آراؤكم · Reviews</span>
+      <h2 class="h-sec">ماذا قال زوّارنا</h2>
+      <p>مراجعات حقيقية من زوّار أيلول على خرائط Google.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">المكان هادئ ليس مزدحم وجميل، والإضاءة كانت مريحة. وكان باستقبالي الموظفة حصة، شرحها للطلبات جيد وموضّح التفاصيل.</p>
+        <div class="who"><div class="av">M</div><div><div class="nm">Mohammed M</div><div class="src">Local Guide · Google</div></div></div>
+      </div>
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">المكان هادئ جدًا مناسب للدراسة، ويوجد دورة مياه وهذا شيء ممتاز. والأسعار مقبولة جدًا من ناحية القهوة.</p>
+        <div class="who"><div class="av">R</div><div><div class="nm">Raad Alshehri</div><div class="src">Local Guide · Google</div></div></div>
+      </div>
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">جلسات رايقة وقهوة كايفة. مكان يستاهل التجربة في تبوك.</p>
+        <div class="who"><div class="av">ز</div><div><div class="nm">زائر أيلول</div><div class="src">Google</div></div></div>
+      </div>
+    </div>
+    <p class="rev-foot rv">تقييم <b>4.3 من 5</b> بناءً على <b>456+</b> مراجعة على خرائط Google</p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="loc">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:right;margin:0 0 50px">
+      <span class="eyebrow">الموقع · Find Us</span>
+      <h2 class="h-sec">زورونا في تبوك</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-info rv">
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-map-pin"></i></div><div><strong>العنوان</strong><p>شارع أبي بكر الصديق، حي مروج الأمير<br>تبوك ٤٧٣١٥، المملكة العربية السعودية</p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-clock"></i></div><div><strong>أوقات العمل</strong><p>يوميًا حتى ١:٣٠ صباحًا</p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-phone"></i></div><div><strong>للتواصل</strong><p><a href="tel:0553414149">٠٥٥ ٣٤١ ٤١٤٩</a></p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-storefront"></i></div><div><strong>الخدمة</strong><p>تناول في المقهى · طلب خارجي · توصيل</p></div></div>
+        <div class="loc-actions">
+          <a href="https://www.google.com/maps/place/%D9%83%D8%A7%D9%81%D9%8A%D9%87+%D8%A7%D9%8A%D9%84%D9%88%D9%84+%7C+AYLOL/@28.4363303,36.5619029,17z/data=!4m7!3m6!1s0x15a9b333f0766139:0xdd94bc8c069888a0!8m2!3d28.4363303!4d36.5619029!16s%2Fg%2F11qn0yyrgq" target="_blank" rel="noopener" class="btn btn-ink"><i class="ph-bold ph-navigation-arrow"></i> الاتجاهات</a>
+          <a href="https://wa.me/966553414149" target="_blank" rel="noopener" class="btn btn-line"><i class="ph-bold ph-whatsapp-logo"></i> واتساب</a>
+        </div>
+      </div>
+      <div class="map-wrap rv">
+        <iframe src="https://www.google.com/maps?q=28.4363303,36.5619029&z=16&output=embed" title="موقع أيلول على الخريطة" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo"><i class="ph-fill ph-leaf"></i>AYLOL</div>
+        <p>أيلول · قهوة مختصة في تبوك. أجواء هادئة، إضاءة دافئة، وقهوة محضّرة بعناية — مساحتك للدراسة والاسترخاء.</p>
+        <div class="foot-soc">
+          <a href="tel:0553414149" aria-label="اتصال"><i class="ph-bold ph-phone"></i></a>
+          <a href="https://wa.me/966553414149" target="_blank" rel="noopener" aria-label="واتساب"><i class="ph-bold ph-whatsapp-logo"></i></a>
+          <a href="https://www.google.com/maps/place/%D9%83%D8%A7%D9%81%D9%8A%D9%87+%D8%A7%D9%8A%D9%84%D9%88%D9%84+%7C+AYLOL/@28.4363303,36.5619029,17z/data=!4m7!3m6!1s0x15a9b333f0766139:0xdd94bc8c069888a0!8m2!3d28.4363303!4d36.5619029!16s%2Fg%2F11qn0yyrgq" target="_blank" rel="noopener" aria-label="خرائط Google"><i class="ph-bold ph-map-pin"></i></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>تصفّح</h4>
+        <ul>
+          <li><a href="#intro">عن أيلول</a></li>
+          <li><a href="#menu">القائمة</a></li>
+          <li><a href="#atmos">الأجواء</a></li>
+          <li><a href="#reviews">آراؤكم</a></li>
+          <li><a href="#loc">الموقع</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>زورونا</h4>
+        <ul>
+          <li><a href="#loc">حي مروج الأمير، تبوك</a></li>
+          <li><a href="tel:0553414149">٠٥٥ ٣٤١ ٤١٤٩</a></li>
+          <li><a href="#loc">يوميًا حتى ١:٣٠ صباحًا</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 AYLOL · أيلول — جميع الحقوق محفوظة</p>
+      <span class="en">Specialty Coffee — Tabuk</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATS -->
+<div class="floats">
+  <button class="fbtn f-top" id="ftop" aria-label="للأعلى"><i class="ph-bold ph-arrow-up"></i></button>
+  <a href="https://wa.me/966553414149" target="_blank" rel="noopener" class="fbtn f-wa" aria-label="واتساب"><i class="ph-bold ph-whatsapp-logo"></i></a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true">
+  <button class="x" id="lbx" aria-label="إغلاق">✕</button>
+  <button class="ar-btn prev" id="lbp" aria-label="السابق"><i class="ph ph-caret-right"></i></button>
+  <img id="lbimg" src="" alt="">
+  <button class="ar-btn next" id="lbn" aria-label="التالي"><i class="ph ph-caret-left"></i></button>
+</div>
+
+<script>
+const nav=document.getElementById('nav'),ftop=document.getElementById('ftop');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>60);ftop.classList.toggle('show',scrollY>500)},{passive:true});
+ftop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+const mnav=document.getElementById('mnav');
+document.getElementById('burger').onclick=()=>{mnav.classList.add('open');document.body.style.overflow='hidden'};
+const closeM=()=>{mnav.classList.remove('open');document.body.style.overflow=''};
+document.getElementById('mclose').onclick=closeM;
+document.querySelectorAll('#mnav a:not([href^="#"])').forEach(a=>a.addEventListener('click',closeM));
+
+// tabs
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('p-'+t.dataset.tab).classList.add('active');
+}));
+
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(!t)return;
+  e.preventDefault();
+  const wasOpen=mnav.classList.contains('open');
+  closeM();
+  const go=()=>scrollTo({top:t.getBoundingClientRect().top+scrollY-70,behavior:'smooth'});
+  wasOpen?setTimeout(go,60):go();
+}));
+
+// lightbox
+const gs=[...document.querySelectorAll('.g')],lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');let ci=0;
+const show=i=>{ci=(i+gs.length)%gs.length;lbimg.src=gs[ci].dataset.src;lbimg.alt=gs[ci].dataset.cap||''};
+const openLb=i=>{show(i);lb.classList.add('open');document.body.style.overflow='hidden'};
+const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow=''};
+gs.forEach((g,i)=>g.onclick=()=>openLb(i));
+document.getElementById('lbx').onclick=closeLb;
+document.getElementById('lbp').onclick=()=>show(ci-1);
+document.getElementById('lbn').onclick=()=>show(ci+1);
+lb.onclick=e=>{if(e.target===lb)closeLb()};
+addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')show(ci-1);if(e.key==='ArrowLeft')show(ci+1)});
+</script>
+</body>
+</html>
